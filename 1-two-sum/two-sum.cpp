@@ -1,27 +1,19 @@
 class Solution {
 public:
-    vector<int> twoSum(vector<int>& nums, int target) {
-        
-        int n=nums.size();
-        vector<int>v;
-        
-        unordered_map<int,int>m;
-        
-        for(int i=0;i<n;i++){
-            
-            if(m.find(target-nums[i])!=m.end()){
-                
-                v.push_back(m[target-nums[i]]);
-                v.push_back(i);
-                
-                return v;
+// Time Complexity: O(n^2) - Nested loop
+// Space Complexity: O(1) - Constant extra space
+vector<int> twoSum(vector<int>& nums, int target) {
+    // Loop through each element in the array
+    for (int i = 0; i < nums.size(); ++i) {
+        // For each element, loop through the rest of the array
+        for (int j = i + 1; j < nums.size(); ++j) {
+            // Check if the sum of current pair equals the target
+            if (nums[i] + nums[j] == target) {
+                // Return the indices if found
+                return {i, j};
             }
-            
-            m[nums[i]]=i;
         }
-        
-       
-        return v;
-        
     }
+    return {}; // Return empty vector if no solution found
+}
 };
